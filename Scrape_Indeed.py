@@ -1,3 +1,7 @@
+#    Scrapes Indeed.com regional site for jobs
+#    Served as learning purpose and practice
+#    Aspiring coder: Arpad Pinter
+
 import requests
 from bs4 import BeautifulSoup
 import csv
