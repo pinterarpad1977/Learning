@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
-BASEURL = 'https://www.indeed.com/jobs'
+BASEURL = 'https://hu.indeed.com/jobs'
 what = input('What jobs to search: ')
 where = input('Where to search: ')
 tup_in = what, where
@@ -53,6 +53,6 @@ def write_to_file(job_links_list):
     print('jobs written to "jobs.csv"')
 
 
-links = get_links(tup_in, 1)
+links = get_links(tup_in, 5)
 joblist = fill_dict(links)
 write_to_file(joblist)
