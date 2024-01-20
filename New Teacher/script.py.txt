@@ -1,0 +1,23 @@
+import itertools
+import roster
+from classroom_organizer import ClassroomOrganizer
+
+student_iterator = iter(roster.student_roster)
+
+cls = ClassroomOrganizer()
+
+math = cls.get_students_with_subject('Math')
+science = cls.get_students_with_subject('Science')
+
+afterschool = itertools.chain(math, science)
+afterschool_seating = itertools.combinations(afterschool, 4)
+
+for fours in afterschool_seating:
+  print(fours)
+
+#for combo in cls.pair_students():
+#  print(combo)
+
+#print(next(student_iterator))
+#for student in student_iterator:
+#  print(student)
