@@ -1,0 +1,3 @@
+I've just started out Javascript in the hope I can create some webpages to showcase my python programs or something...
+Yeah I am quite clueless.
+--- 11FEB2024 ---
