@@ -1,0 +1,27 @@
+body {
+  background-color: #ffffff;
+  color: #000FFF;
+  font-family: "Fjalla One", Arial;
+}
+
+form {
+  line-height: 25px;
+}
+
+h1 {
+  font-size: 3em;
+  overflow: break;
+}
+
+.overlay {
+  width: 80%;
+  min-width: 30%;
+  margin: 3% auto;
+  display: block;
+  padding: 2%;
+  height: 90vh;
+  background-color: rgba(0, 255, 0, 0.5);
+  border-radius: 50px;
+  text-align: center;
+}
+
