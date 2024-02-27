@@ -129,6 +129,23 @@ class LinkedList:
       linked_list.insert_beginning(i)
     return linked_list
 
+  def find_middle(linked_list):
+  slow = linked_list.head_node
+  fast = linked_list.head_node
+  while fast:
+    fast = fast.get_next_node()
+    if fast:
+      slow = slow.get_next_node()
+      fast = fast.get_next_node()
+  return slow
+
+
+# Use this to test your code:
+test_list = generate_test_linked_list(8)
+print(test_list.stringify_list())
+middle_node = find_middle(test_list)
+print(middle_node.value)
+
 # Use this to test your code:
 test_list = generate_test_linked_list()
 print(test_list.stringify_list())
