@@ -2,6 +2,12 @@ class Node:
   def __init__(self, value, next_node=None):
     self.value = value
     self.next_node = next_node
+
+  def __iter__(self):
+    current_node = self.head_node
+    while(current_node):
+      yield current_node.get_value()
+      current_node = current_node.get_next_node()
     
   def get_value(self):
     return self.value
