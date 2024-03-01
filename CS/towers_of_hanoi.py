@@ -1,7 +1,5 @@
 # stack must be created or imported
-# stack was given a print_items method!
-
-from stack import Stack
+# stack was given a print_items and get_name method!
 
 print("\nLet's play Towers of Hanoi!!")
 
