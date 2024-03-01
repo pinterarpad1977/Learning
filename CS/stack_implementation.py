@@ -1,10 +1,11 @@
 # from node import Node -> node class must be crated or imported
 
 class Stack:
-  def __init__(self, limit=1000):
+  def __init__(self, name, limit=1000):
     self.top_item = None
     self.size = 0
     self.limit = limit
+    self.name = name
   
   def push(self, value):
     if self.has_space():
@@ -35,6 +36,18 @@ class Stack:
 
   def is_empty(self):
     return self.size == 0
+
+  def get_name(self):
+    return self.name
+  
+  def print_items(self):
+    pointer = self.top_item
+    print_list = []
+    while(pointer):
+      print_list.append(pointer.get_value())
+      pointer = pointer.get_next_node()
+    print_list.reverse()
+    print("{0} Stack: {1}".format(self.get_name(), print_list))
   
 # Defining an empty pizza stack
 pizza_stack = Stack(6)
