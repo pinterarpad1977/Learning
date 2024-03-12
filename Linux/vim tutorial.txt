@@ -1,0 +1,66 @@
+When you open Vim it opens in 
+*** NORMAL MODE ***
+u -> undo
+0 -> jumps to the front of the line
+$ -> jumps to the end of the line
+ESC -> escapes Insert Mode back to normal mode
+x -> remowes the character the cursor is on
+dd -> removes the line the cursor is on
+h j k l -> moves the cursor around (left, right, up , down)
+gg -> jumps to the top
+G -> jumps to the end 
+
+
+
+*** INSERT MODE ***
+i -> enters insert mode, in insert mode you can add / edit text
+A -> enters insert mode and jumps at the end of the line
+
+
+
+*** COMMAND MODE ***
+: -> puts Vim into COMMAND MODE
+:w -> saves the file
+:w filename -> Save As, or just save if it didn't have a name yet
+:wq -> save and exit
+:q to QUIT
+:q! to QUIT without saving
+:r path/filename -> reads in the content of the file given in the argument
+:! linux command -> executes linux commands within vim (you don't need to exit vim)
+:%s/what_to_replace/with_what/g -> find and replace
+:split filename -> splits the window and show both buffers in the same screen(horizontal)
+ctrl ww -> jump to the other file (the active file name will be bold)
+:q -> closes the active file
+:vsplit -> splits the screen vertically
+you can open the same file in a split view to compare different parts of the file
+:set number -> displays the line numbers
+:set nonumber -> disdables line numbers
+
+
+What is a Buffer?
+It contains the text until we save it (:w)
+Vim doesn't actually open the file, just reads its content into the buffer.
+:e path/filename can read another file in another buffer
+:bp -> goes to the previous buffer
+:bn -> goes to the next buffer
+:bd -> deletes the current buffer
+:enew -> opens an empty buffer - it will disappear if we don't add anything and save it!
+:badd filename -> adds a new buffer without jumping to it (see it with :bn)
+
+*** VISUAL MODE ***
+v -> enters visual mode - allows to select text (position the cursor before entering visual mode)
+y -> copies the selected text in insert mode: p -> pastes the copied text 
+:sort ui -> sorts the selected lines alphabetically
+
+To make changes permanent in the config of Vim you need to create a .vimrc file in your home directory
+" Adds line numbers
+set number
+
+to start vim at a particular lin number:
+vim +20 filename -> puts the cursor on line 20 when opening
+
+to start vim splitted:
+vim -o first_file second_file (horizontal split)
+vim -O first_file second_file (vertical split)
+
+
