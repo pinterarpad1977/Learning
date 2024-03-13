@@ -1,0 +1,71 @@
+- checking which shell is running: echo $SHELL
+- scripts used to be saved with the .sh extension (not required, but common practice)
+- to run the script make it executable:
+
+	sudo chmod +x myscript.sh
+	./myscript.sh
+
+- scripts will be executed line-by-line from top to bottom
+
+PROPER STRUCTURE
+#!/bin/bash -> SHEBANG the first line
+
+VARIABLES
+define a variable with varname= ...
+reference the variable with $varname
+variables are tied to the bash terminal. After exiting they will disappear
+to save a copmmand output to a variable:
+
+	files=$(ls)
+	now=$(date)
+
+MATH FUNCTIONS
+expr -> evaluate expression
+
+	expr 30 + 40 ( + - / and \* for multiplication)
+
+# IF - pay attention to spaces!
+
+if [ $num1 -eq 100 ]
+then
+    echo "The condition is true."
+else
+    echo "The condition is false."
+fi
+
+# reverse logic with ! or use -ne : not equal
+if [! $num1 -eq 100 ]
+then
+    echo "The condition is true."
+else
+    echo "The condition is false."
+fi
+
+# comparison:
+# -eq : equals
+# -ne : not equals
+# -gt : greater than
+# -f  : checks if a file exists
+# !   : reverses the logic
+
+# ------------------------------------------
+#!/bin/bash
+
+command=usr/bin/htop 
+
+if [ -f $command ] 
+then
+    echo "$command is available, running it..."
+else 
+    echo "$command is NOT available, installing it..."
+    sudo apt update && sudo apt install -y htop
+fi
+
+$command
+
+# && chains commands together (if the first command is successful runs the second one too
+# -y assume yes (don't ask questions)
+# --------------------------------------------
+
+
+ 
