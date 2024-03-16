@@ -1,0 +1,85 @@
+OpenSSH is a remote access tool
+It is a suite of utilities not a single binary
+Usually it is using Port 22 - this must be open on all devices along the hops
+
+
+----- Connecting -------
+ssh username@ip-address
+prompt to make sure we want to connect: type yes
+the server fingerprint will be added to the known_hosts in the /home/user/.ssh dir
+
+ctrl+D -> disconnect
+
+
+----- Config file ------
+create a config file in the .ssh dir
+Add these lines:
+Host myserver
+   Hostname ip address of the server we want to connect to
+   Port 22
+   User root
+
+After this to connect it is enough to type ssh myserver
+You can include multiple servers in the config file
+
+
+----- SSH keys -------
+Best practice: disable password authentication and use only ssh keys
+ssh-keygen -> generates a brand new key it saves to the .ssh directory.
+use passphrase for additional layer of security
+it creates an id_rsa and an id_rsa.pub key
+
+Setup the server to accept the key:
+1. copy the public key content
+2. connect to the server with password
+3. create a .ssh dir in the users home if it doesn't exist
+4. create a file authorized_keys and paste the public key inside
+5. disconnect
+next time you want to connect it won't require password
+(it matches the local private key with the public key stored on the server)
+
+Easier way to do this:
+1. log in the server with passwordon your local machine: ssh-copy-id -i ~/.ssh/id_rsa.pub username@ip address
+2. provide the password and done 
+
+if you have multiple keys for multiple servers in the .ssh dir:
+it is best practice to specify the key in the connection command
+ssh -i ~/.ssh/private key user@ip address
+this will propmt always for the password.
+We can cache the password into the memory with the ssh-agent for the whole session:
+We need to start the ssh-agent:
+
+eval "$(ssh-agent)"
+
+to add a key to the ssh-agent:
+ssh-add ~/.ssh/private key
+
+
+------ Server side config -------
+we need the ssh-server copmponent running on the server: sshd / ssh (depending on distro)
+systemctl sshd - to check if it's running
+systemctl enable ssh(d)
+systemctl start ssh(d)
+
+ssh dir on the server: /etc/ssh
+this dir holds the sshd_config file and the keys
+
+PermitRootLogin yes -> change it to no when you have another user with sudo access
+PasswordAuthentication yes -> change it to no when you have the ssh key already
+Port 22 -> you can change it to add a bit of security. In this case you need to 
+
+add the -p portnumber to the ssh command
+
+
+
+------ Troubleshooting -----------
+Port 22 (or the selected port) must be open all the way to the server on every devices
+.ssh dirs and the private keys must have access only for the user
+
+server logfiles:
+/var/log/auth.log -> tail -f auth.log -> see the log when the user wants to login
+journalctl -u ssh(d) 
+journalctl -fu ssh(d) - similar to tailing the auth.log file
+
+
+
