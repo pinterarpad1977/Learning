@@ -1,0 +1,13 @@
+--- Searchbar Tips ----
+search operators: (replace things in "")
+ - "search expression" site: "domain"
+ - site:"domain" inurl:"admin"
+ - intext: ""
+ - intitle: ""
+ - filetype:"pdf"
+ - allinurl:"includes everything in the url typed after it"
+
+--- Google Hacking Database ----
+https://www.exploit-db.com/google-hacking-database
+
+
