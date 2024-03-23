@@ -1,0 +1,26 @@
+ps 	- processes running for the current user
+ps aux 	- all running processes
+sudo systemctl start / enable / stop service
+most malicious software will appear in the processes
+
+top / htop
+similar to ps but updating constantly
+malware used to appear on the top (resource hungry)
+q - to quit top
+
+
+kill processes
+sudo kill -9 PID 	the dirty way, no cleanup: 
+			the preferred way to kill suspicious processes
+sometimes the process will pop again after killing
+
+Schedule a job / script
+1. at (might need to install)
+at 9:00pm / noon / midnight / now + 3 hours...
+at propmt> add a binary from /bin/sh
+it is good for simple single scans
+
+2. recurring jobs need crontab
+best for sys admins
+
+
