@@ -1,0 +1,22 @@
+sudo apt update
+sudo apt search keyword (like bluetooth)
+sudo apt install app name
+
+/etc/apt/sources.list -> you can add repositories for multiple distros
+
+sudo apt remove app name -> can leave behind conf files
+sudo apt purge app name -> gets rid of everything connected to the app
+
+
+Getting tools from GitHub
+sudo git clone https://github.com/repository name
+
+Necessary tools:
+- mousepad
+- pip - sudo apt install python3-pip
+- shodan - sudo pip3 install shodan:
+	shodan init api-key
+	shodan search port: 502	country:fr
+- sudo gem install modbus-cli -> gem is a ruby package manager
+
+
