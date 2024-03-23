@@ -1,0 +1,87 @@
+** ifconfig (ip address)
+shows the nework interfaces
+
+
+** iwconfig
+shows the wireless interfaces
+virtual machines convert the wireless connection int a lan connection on the guest machine
+
+
+IP addresses are assigned by the DHCP server on your network (Dynamic Host Configuration Protocol)
+These are dynamic IP addresses
+
+To change the dynamic IP address to static:
+** sudo ifconfig eth0 (eno1) 192.168.0.101 - gives a static ip address
+you won't be able to connect to the internet, but still can connect to other machines within the LAN.
+easy check for internet connectivity:
+** ping google.com
+
+To revert back to DHCP:
+** sudo dhclient eth0 (eno1)
+
+DNS
+IP address(es) are converted into a domain name
+
+** dig tesla.com ns - name server
+** dig tesla.com mx - mail server
+
+**sudo nano /etc/resolv.conf
+the configuration file where the DNS resolution starts
+you can change the nameserver, but it is recommended to use something in the neighborhood (ISP)
+(google ns: 8.8.8.8)
+
+to see the running service:
+** resolvectl status
+
+DNS creates a UDP traffic and not TCP
+Port 53 is the DNS
+
+NMAP
+tries to determine which ports (services) are open on the target
+(shodan is similar)
+ping the target first if it is up 
+(sometimes ping 1is dropped on the target system, but it doesn't mean the system is not up)
+
+TCP-IP protocol:
+3 way handshake:
+connection request from the client (SYN)
+SYN-ACK from the server
+ACK from the client
+after this the connection is established
+
+nmap is using the TCP flags the client and the server are sending to determine which port are open
+** nmap -sT 192.168.107.15 - reliable scan which tries to connect to top 1000 port
+** nmap -sT 192.168.107.15 -p 53 - checking just one port
+
+most commonly used ports
+53 - DNS
+80 - http
+444 - https
+
+you can open and close TCP ports with nc:
+** sudo nc -l -p 53 -> open port 53 for listening
+
+nmap will name the ports by the default service (53 = domain or DNS)
+but we know that we opened the port for TCP connection
+to make nmap determine the port protocol use -A
+
+** nmap -sT -A 192.168.107.15 -p 53 - checking the ports and probe them what services they are running
+** nmap -sS -A  -> called the stealth scan (it doesn't use the 3-way handshake) 
+but your IP address will still be registered 
+(the webserver will not log your IP address but the system itself can see it)
+
+
+from the target side:
+wireshark can detect the connection requests like ping or nmap
+
+
+We can also change our MAC address:
+Usually WiFi access points are set up to use MAC Address filtering.
+So to access the wifi we need to change our mac address to one of the allowed ones (white list).
+
+** sudo ifconfig eth0 down - take down the interface
+** sudo ifconfig eth0 hw ether 00:00:00:00:00:00 -> valid values: (0-9, a-f) Set the new MAC address
+** sudo ifconfig eth0 up
+
+
+
